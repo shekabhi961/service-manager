@@ -765,3 +765,6 @@ IF = Login(root)
 
 root.mainloop()
 
+
+########    https://andreilungu.com/python-script-to-send-every-month-an-email-reminder-in-a-specific-day-of-the-month/   #####
+
