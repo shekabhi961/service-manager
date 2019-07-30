@@ -547,6 +547,7 @@ def send_email(user, password, recipient, subject, body):
 
 ###########################################-------------------------------------
 
+
 def checkone():
     cursor.execute("SELECT Exp_date FROM domain")
     row = cursor.fetchall()
@@ -555,53 +556,44 @@ def checkone():
         compare = res - now
         print(compare)
 
-        from datetime import timedelta
-
         if compare > timedelta():
-
-            cursor.execute("SELECT domain_name FROM domain ")
+            cursor.execute("SELECT domain_name FROM domain where Exp_date > CURRENT_DATE ")
             varp = cursor.fetchall()
             for i in varp:
-                r = i[0]
-                print(r)
+                s = i[0]
+                print(s)
 
-                if r :
-                    send_email("shekabhi961@gmail.com", "9602311961", "tiwariayush961@gmail.com", "AntMan",
-                               "Hey!!" + r + str(compare.days) + " is expiring soon ")
-
-                    notification_manager.alert(str(compare.days) + " days remaining, Please update")
-
-                    break
+                if s:
+                    notification_manager.info(str(compare.days) + " days remaining, " + " your account is is expiring soon")
+                    send_email("shekabhi961@gmail.com", "9602311961", "aayush@indiadox.com", "AntMan",
+                       "Hey!! your " + s + " have " + str(compare.days) + " days remaining ")
 
         elif compare == timedelta():
-            cursor.execute("SELECT domain_name FROM domain ")
+            cursor.execute("SELECT domain_name FROM domain where Exp_date = CURRENT_DATE ")
             varm = cursor.fetchall()
             for i in varm:
+                re = i[0]
+                print(re)
+
+                if re:
+                    notification_manager.info("your account is expiring today, Update Immediately")
+                    send_email("shekabhi961@gmail.com", "9602311961", "aayush@indiadox.com", "AntMan",
+                               "Hey!! your " + re + " is expiring today, Update Immediately ")
+
+        elif compare < timedelta():
+            cursor.execute("SELECT domain_name FROM domain where Exp_date < CURRENT_DATE ")
+            vare = cursor.fetchall()
+            for i in vare:
                 resp = i[0]
                 print(resp)
 
                 if resp:
-                    send_email("shekabhi961@gmail.com", "9602311961", "tiwariayush961@gmail.com", "AntMan",
-                           "Hey!!" + resp + str(compare.days) + " is expiring today, Update Immediately " )
-
-                    notification_manager.warning("warning! your account may discontinued from tomorrow")
-
-                    break
-
-        elif compare < timedelta():
-            cursor.execute("SELECT domain_name FROM domain ")
-            vare = cursor.fetchall()
-            for i in vare:
-                resps = i[0]
-                print(resps)
-
-                if resps:
-                    send_email("shekabhi961@gmail.com", "9602311961", "tiwariayush961@gmail.com", "AntMan",
-                           "Hey!!" + resps + str(compare.days) + " is expired, Please Contact Service Provider " )
-
                     notification_manager.info("your account is expired")
 
-                    break
+                    send_email("shekabhi961@gmail.com", "9602311961", "aayush@indiadox.com", "AntMan",
+
+                       "Hey!! your " + resp + " is expired, Please Contact Service Provider ")
+
 
 ###########################################-------------------------------------
 
@@ -613,48 +605,45 @@ def checktwo():
         compare = res - now
         print(compare)
 
-        from datetime import timedelta
-
         if compare > timedelta():
-            cursor.execute("SELECT host_name FROM host ")
+            cursor.execute("SELECT host_name FROM host where Exp_date > CURRENT_DATE ")
             varp = cursor.fetchall()
             for i in varp:
-                r = i[0]
-                print(r)
+                s = i[0]
+                print(s)
 
-                if r:
-                    notification_manager.info(str(compare.days)+ " days remaining, " + " your account is is expiring soon")
-                    send_email("shekabhi961@gmail.com", "9602311961", "tiwariayush961@gmail.com", "AntMan",
-                               "Hey!!" + r + str(compare.days) + " is expiring soon ")
-
-                    break
+                if s:
+                    notification_manager.info(
+                        str(compare.days) + " days remaining, " + " your account is is expiring soon")
+                    send_email("shekabhi961@gmail.com", "9602311961", "aayush@indiadox.com", "AntMan",
+                               "Hey!! your " + s + " have " + str(compare.days) + " days remaining ")
 
         elif compare == timedelta():
-            cursor.execute("SELECT host_name FROM host ")
+            cursor.execute("SELECT host_name FROM host where Exp_date = CURRENT_DATE ")
             varm = cursor.fetchall()
             for i in varm:
+                re = i[0]
+                print(re)
+
+                if re:
+                    notification_manager.info("your account is expiring today, Update Immediately")
+                    send_email("shekabhi961@gmail.com", "9602311961", "aayush@indiadox.com", "AntMan",
+                               "Hey!! your " + re + " is expiring today, Update Immediately ")
+
+        elif compare < timedelta():
+            cursor.execute("SELECT host_name FROM host where Exp_date < CURRENT_DATE ")
+            vare = cursor.fetchall()
+            for i in vare:
                 resp = i[0]
                 print(resp)
 
                 if resp:
-                    notification_manager.info("your account is expiring today, Update Immediately")
-                    send_email("shekabhi961@gmail.com", "9602311961", "tiwariayush961@gmail.com", "AntMan",
-                               "Hey!!" + resp + str(compare.days) + " is expiring today, Update Immediately ")
-                    break
-
-
-        elif compare < timedelta():
-            cursor.execute("SELECT host_name FROM host ")
-            vare = cursor.fetchall()
-            for i in vare:
-                resps = i[0]
-                print(resps)
-
-                if resps:
                     notification_manager.info("your account is expired")
-                    send_email("shekabhi961@gmail.com", "9602311961", "tiwariayush961@gmail.com", "AntMan",
-                               "Hey!!" + resps + str(compare.days) + " is expired, Please Contact Service Provider ")
-                    break
+
+                    send_email("shekabhi961@gmail.com", "9602311961", "aayush@indiadox.com", "AntMan",
+
+                               "Hey!! your " + resp + " is expired, Please Contact Service Provider ")
+
 
 ###########################################-------------------------------------
 
@@ -666,46 +655,46 @@ def checkthree():
         compare = res - now
         print(compare)
 
-        from datetime import timedelta
-
         if compare > timedelta():
-            cursor.execute("SELECT s_name FROM sl ")
+            cursor.execute("SELECT s_name FROM sl where Exp_date > CURRENT_DATE ")
             varp = cursor.fetchall()
             for i in varp:
-                r = i[0]
-                print(r)
+                s = i[0]
+                print(s)
 
-                if r:
-                    notification_manager.info(str(compare.days) + " days remaining, " + " your account is is expiring soon")
-                    send_email("shekabhi961@gmail.com", "9602311961", "tiwariayush961@gmail.com", "AntMan",
-                               "Hey!!" + r + str(compare.days) + " remaining only, license is expiring soon ")
-
-                    break
+                if s:
+                    notification_manager.info(
+                        str(compare.days) + " days remaining, " + " your account is is expiring soon")
+                    send_email("shekabhi961@gmail.com", "9602311961", "aayush@indiadox.com", "AntMan",
+                               "Hey!! your " + s + " have " + str(compare.days) + " days remaining ")
 
         elif compare == timedelta():
-            cursor.execute("SELECT s_name FROM sl ")
+            cursor.execute("SELECT s_name FROM sl where Exp_date = CURRENT_DATE ")
             varm = cursor.fetchall()
             for i in varm:
+                re = i[0]
+                print(re)
+
+                if re:
+                    notification_manager.info("your account is expiring today, Update Immediately")
+                    send_email("shekabhi961@gmail.com", "9602311961", "aayush@indiadox.com", "AntMan",
+                               "Hey!! your " + re + " is expiring today, Update Immediately ")
+
+        elif compare < timedelta():
+            cursor.execute("SELECT s_name FROM sl where Exp_date < CURRENT_DATE ")
+            vare = cursor.fetchall()
+            for i in vare:
                 resp = i[0]
                 print(resp)
 
                 if resp:
-                    send_email("shekabhi961@gmail.com", "9602311961", "tiwariayush961@gmail.com", "AntMan",
-                               "Hey!!" + resp + str(compare.days) + " is expiring today, Update Immediately ")
-                    break
+                    notification_manager.info("your account is expired")
+
+                    send_email("shekabhi961@gmail.com", "9602311961", "aayush@indiadox.com", "AntMan",
+
+                               "Hey!! your " + resp + " is expired, Please Contact Service Provider ")
 
 
-        elif compare < timedelta():
-            cursor.execute("SELECT s_name FROM sl ")
-            vare = cursor.fetchall()
-            for i in vare:
-                resps = i[0]
-                print(resps)
-
-                if resps:
-                    send_email("shekabhi961@gmail.com", "9602311961", "tiwariayush961@gmail.com", "AntMan",
-                               "Hey!!" + resps + str(compare.days) + " is expired, Please Contact Service Provider ")
-                    break
 
 ######################################
 #Login--------------------
