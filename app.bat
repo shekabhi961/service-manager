@@ -24,11 +24,9 @@ GOTO END
 ECHO FILE VERIFICATION COMPLETE !
 ECHO.
 ECHO LAUNCHING APPLICATIONS
-Bakuo_system.vbs
-view_launcher.vbs
-app.bat
-rem PAUSE
-exit
+C:\Aunico\bin\Hospital-Bill.exe
+rem PAUSE 
+Exit
 
 
 :END
